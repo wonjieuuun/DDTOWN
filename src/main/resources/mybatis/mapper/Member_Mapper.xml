@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="kr.or.ddit.mapper.IUserMapper">
+ 
+ 	<resultMap type="kr.or.ddit.vo.MemberVO" id="memberMap">
+ 		<id property="memNo" column="mem_no"/>
+ 		<result property="memNo" column="mem_no" />
+ 		<result property="memId" column="mem_id" />
+ 		<result property="memPw" column="mem_pw" />
+ 		<result property="memFirstNm" column="mem_first_nm" />
+ 		<result property="memLastNm" column="mem_last_nm" />
+ 		<result property="memNicknm" column="mem_nicknm" />
+ 		<result property="memEmail" column="mem_email" />
+ 		<result property="memTelno" column="mem_telno" />
+ 		<result property="memBirth" column="mem_birth" />
+ 		<result property="memRegDate" column="mem_reg_date" />
+ 		<result property="memUpdDate" column="mem_upd_date" />
+ 		<result property="memPostcode" column="mem_postcode" />
+ 		<result property="memAddr1" column="mem_addr1" />
+ 		<result property="memAddr2" column="mem_addr2" />
+ 		<result property="memStatCommCode" column="mem_stat_comm_code" />
+ 		<result property="memEnabled" column="mem_enabled" />
+ 		<collection property="authList" resultMap="authMap" />
+ 	</resultMap>
+ 	
+ 	<resultMap type="kr.or.ddit.vo.MemberAuthVO" id="authMap">
+ 		<result property="memNo" column="mem_no" />
+ 		<result property="authNm" column="auth_nm" />
+ 	</resultMap>
+ 
+	
+ 	<select id="idCheck" parameterType="string" resultType="int">
+ 		select count(mem_id)
+ 		from member
+ 		where mem_id = #{memId}
+ 	</select>
+ 	
+ 	<insert id="register" parameterType="kr.or.ddit.vo.MemberVO" useGeneratedKeys="true">
+ 		<selectKey keyProperty="memNo" resultType="int" order="BEFORE">
+ 			select seq_mem.nextval from dual
+ 		</selectKey>
+ 		insert into member (
+ 			mem_no, mem_id, mem_pw, mem_last_nm, mem_first_nm, mem_nicknm, mem_email, mem_telno
+ 			<if test="memBirth != null and memBirth != ''">
+	 			, mem_birth
+ 			</if>
+ 		) values(
+			#{memNo},#{memId},#{memPw},#{memLastNm},#{memFirstNm},#{memNicknm},#{memEmail},#{memTelno}
+			<if test="memBirth != null and memBirth != ''">
+				, #{memBirth}
+			</if> 		
+ 		)
+ 	</insert>
+ 	<insert id="registerAuth" parameterType="int">
+ 		insert into member_auth (
+ 			mem_no, auth_nm
+ 		) values (
+ 			#{memNo}, 'ROLE_MEMBER'
+ 		)
+ 	</insert>
+ 	
+ </mapper>

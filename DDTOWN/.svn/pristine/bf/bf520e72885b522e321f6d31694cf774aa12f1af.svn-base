@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="jakarta.tags.core"  prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+1:1문의하기<br/>
+	<form action="/inquiry/insert" method="post">
+	<sec:csrfInput/>
+		이름<br/>
+		<sec:authentication property="principal.memberVO" var="member"/>
+		<input type="text" id="username" name="username" value="${name }" disabled="disabled"/><br/>
+		
+		문의유형
+		<select id="inqTypeCode" name="inqTypeCode">
+			<c:forEach items="${codeList }" var="code">
+				<option id="${code.commCodeDetNo }" name="${code.commCodeDetNo }" value="${code.commCodeDetNo }">${code.description }</option>
+			</c:forEach>
+		</select><br/>
+		
+		문의제목<br/>
+		<input type="text" id="inqTitle" name="inqTitle" /><br/>
+		
+		문의내용<br/>
+		<textarea rows="4" cols="10" id="inqContent" name="inqContent"></textarea>
+		<input type="submit" value="문의접수" />
+		<input type="button" id="cancle" value="취소" />
+	</form>
+</body>
+</html>

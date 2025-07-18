@@ -1,0 +1,8 @@
+package kr.or.ddit.ddtown.service.concert;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ConcertServiceImpl {
+
+}
