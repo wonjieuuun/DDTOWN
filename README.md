@@ -98,6 +98,6 @@ DDTOWN 백엔드는 다음과 같은 핵심 기술 스택을 활용하여 안정
 
 ## 🤝 기여자 (Contributors)
 
-  * [**원지은**](https://www.google.com/search?q=https://github.com/your-github-profile-link) - **(담당 역할: 굿즈샵 및 결제 시스템 백엔드 개발 주도, 핵심 DB 설계, 문서화 지원)**
+  * [**원지은**]([https://www.google.com/search?q=https://github.com/your-github-profile-link](https://github.com/wonjieuuun)) - **(담당 역할: 굿즈샵 및 결제 시스템 백엔드 개발 주도, 핵심 DB 설계, 문서화 지원)**
 
 -----
